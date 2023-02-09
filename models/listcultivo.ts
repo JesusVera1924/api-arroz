@@ -1,35 +1,34 @@
 import { DataTypes } from 'sequelize';
 import db from '../db/connection';
-import Usuario from './usuario';
+import Finca from './finca';
+import Terreno from './terreno';
 
-const listTask = db.define('listtask', {
+const listcultivos = db.define('listcultivos', {
     uid: {
         primaryKey: true,
-        type: DataTypes.STRING
-    },
-    referencia: {
-        type: DataTypes.STRING
-    },
-    referencia2: {
         type: DataTypes.STRING
     },
     observacion: {
         type: DataTypes.STRING
     },
-    comentario: {
+    observacion2: {
         type: DataTypes.STRING
     },
     estado: {
         type: DataTypes.STRING
     },
-    fin: {
-        type: DataTypes.DATE
+    idFinca: {
+        type: DataTypes.STRING
+    },
+    idTerreno: {
+        type: DataTypes.STRING
     },
     idTask: {
         type: DataTypes.STRING
     }
 }, { freezeTableName: true });
 
-listTask.belongsTo(Usuario, { foreignKey: 'idTask', targetKey: 'uid' });
+listcultivos.belongsTo(Finca, { foreignKey: 'idFinca', targetKey: 'uid' });
+listcultivos.belongsTo(Terreno, { foreignKey: 'idTerreno', targetKey: 'uid' });
 
-export default listTask;
+export default listcultivos;
