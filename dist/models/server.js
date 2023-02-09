@@ -30,6 +30,7 @@ const historial_1 = __importDefault(require("../routes/historial"));
 const cronograma_1 = __importDefault(require("../routes/cronograma"));
 const dwre_1 = __importDefault(require("../routes/dwre"));
 const listcultivo_1 = __importDefault(require("../routes/listcultivo"));
+const listerrenos_1 = __importDefault(require("../routes/listerrenos"));
 const cors_1 = __importDefault(require("cors"));
 const connection_1 = __importDefault(require("../db/connection"));
 class Server {
@@ -50,7 +51,8 @@ class Server {
             cronograma: '/api/cronograma',
             dwre: '/api/dwre',
             listtask: '/api/listtask',
-            listcultivo: '/api/listcultivos'
+            listcultivo: '/api/listcultivos',
+            listterreno: '/api/listterreno'
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
@@ -94,7 +96,8 @@ class Server {
             this.app.use(this.apiPaths.cronograma, cronograma_1.default),
             this.app.use(this.apiPaths.dwre, dwre_1.default),
             this.app.use(this.apiPaths.listtask, listtask_1.default),
-            this.app.use(this.apiPaths.listcultivo, listcultivo_1.default);
+            this.app.use(this.apiPaths.listcultivo, listcultivo_1.default),
+            this.app.use(this.apiPaths.listterreno, listerrenos_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {

@@ -16,6 +16,7 @@ import historialRoutes from '../routes/historial';
 import cronogramaRoutes from '../routes/cronograma';
 import dwreRoutes from '../routes/dwre';
 import listCultivoRoute from '../routes/listcultivo';
+import listTerrenoRoute from '../routes/listerrenos';
 
 
 import cors from 'cors';
@@ -43,7 +44,8 @@ class Server {
         cronograma: '/api/cronograma',
         dwre: '/api/dwre',
         listtask: '/api/listtask',
-        listcultivo: '/api/listcultivos'
+        listcultivo: '/api/listcultivos',
+        listterreno: '/api/listterreno'
     }
 
     constructor() {
@@ -97,7 +99,8 @@ class Server {
             this.app.use(this.apiPaths.cronograma, cronogramaRoutes),
             this.app.use(this.apiPaths.dwre, dwreRoutes),
             this.app.use(this.apiPaths.listtask, listtaskRoutes),
-            this.app.use(this.apiPaths.listcultivo, listCultivoRoute)
+            this.app.use(this.apiPaths.listcultivo, listCultivoRoute),
+            this.app.use(this.apiPaths.listterreno, listTerrenoRoute)
     }
 
 
