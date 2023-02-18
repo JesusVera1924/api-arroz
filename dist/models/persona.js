@@ -5,10 +5,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
-const usuario_1 = __importDefault(require("./usuario"));
 const Persona = connection_1.default.define('personas', {
-    uid: {
+    idpersonas: {
         primaryKey: true,
+        type: sequelize_1.DataTypes.STRING
+    },
+    cedula: {
         type: sequelize_1.DataTypes.STRING
     },
     nombre: {
@@ -23,24 +25,17 @@ const Persona = connection_1.default.define('personas', {
     celular: {
         type: sequelize_1.DataTypes.STRING
     },
-    correo: {
-        type: sequelize_1.DataTypes.STRING
-    },
-    cedula: {
-        type: sequelize_1.DataTypes.STRING
-    },
-    fecha: {
+    nacimiento: {
         type: sequelize_1.DataTypes.STRING
     },
     estado: {
-        type: sequelize_1.DataTypes.INTEGER
+        type: sequelize_1.DataTypes.BOOLEAN
     },
-    idusuario: {
-        type: sequelize_1.DataTypes.STRING
+    idUsuario: {
+        type: sequelize_1.DataTypes.INTEGER
     },
 }, {
     timestamps: false
 });
-Persona.belongsTo(usuario_1.default, { foreignKey: 'idusuario', targetKey: 'uid' });
 exports.default = Persona;
 //# sourceMappingURL=persona.js.map

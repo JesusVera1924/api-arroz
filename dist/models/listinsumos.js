@@ -5,15 +5,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
-const listinsumos = connection_1.default.define('listinsumos', {
-    uid: {
+const listinsumos = connection_1.default.define('listadeinsumos', {
+    idlistadeInsumos: {
         primaryKey: true,
         type: sequelize_1.DataTypes.STRING
     },
-    referencia: {
+    idInsumo: {
         type: sequelize_1.DataTypes.STRING
     },
-    idinsumo: {
+    idPlanificacion: {
+        type: sequelize_1.DataTypes.STRING
+    },
+    unidad: {
+        type: sequelize_1.DataTypes.STRING
+    },
+    estado: {
         type: sequelize_1.DataTypes.INTEGER
     }
 }, { freezeTableName: true });

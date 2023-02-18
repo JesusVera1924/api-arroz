@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import db from '../db/connection';
 
 const Historial = db.define('historial', {
-    uid: {
+    idhistorial: {
         primaryKey: true,
         type: DataTypes.STRING
     },
@@ -11,6 +11,15 @@ const Historial = db.define('historial', {
     },
     observacion: {
         type: DataTypes.STRING
+    },
+    observacion2: {
+        type: DataTypes.STRING
+    },
+    evaluar: {
+        type: DataTypes.INTEGER
+    },
+    carga: {
+        type: DataTypes.TEXT
     }
 }, { freezeTableName: true });
 

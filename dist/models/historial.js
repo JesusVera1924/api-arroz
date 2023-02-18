@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
 const Historial = connection_1.default.define('historial', {
-    uid: {
+    idhistorial: {
         primaryKey: true,
         type: sequelize_1.DataTypes.STRING
     },
@@ -15,6 +15,15 @@ const Historial = connection_1.default.define('historial', {
     },
     observacion: {
         type: sequelize_1.DataTypes.STRING
+    },
+    observacion2: {
+        type: sequelize_1.DataTypes.STRING
+    },
+    evaluar: {
+        type: sequelize_1.DataTypes.INTEGER
+    },
+    carga: {
+        type: sequelize_1.DataTypes.TEXT
     }
 }, { freezeTableName: true });
 exports.default = Historial;

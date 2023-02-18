@@ -1,15 +1,21 @@
 import { DataTypes } from 'sequelize';
 import db from '../db/connection';
 
-const listinsumos = db.define('listinsumos', {
-    uid: {
+const listinsumos = db.define('listadeinsumos', {
+    idlistadeInsumos: {
         primaryKey: true,
         type: DataTypes.STRING
     },
-    referencia: {
+    idInsumo: {
         type: DataTypes.STRING
     },
-    idinsumo: {
+    idPlanificacion: {
+        type: DataTypes.STRING
+    },
+    unidad: {
+        type: DataTypes.STRING
+    },
+    estado: {
         type: DataTypes.INTEGER
     }
 }, { freezeTableName: true });

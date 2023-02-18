@@ -3,8 +3,11 @@ import db from '../db/connection';
 import Usuario from './usuario';
 
 const Persona = db.define('personas', {
-    uid: {
+    idpersonas: {
         primaryKey: true,
+        type: DataTypes.STRING
+    },
+    cedula: {
         type: DataTypes.STRING
     },
     nombre: {
@@ -19,27 +22,21 @@ const Persona = db.define('personas', {
     celular: {
         type: DataTypes.STRING
     },
-    correo: {
-        type: DataTypes.STRING
-    },
-    cedula: {
-        type: DataTypes.STRING
-    },
-    fecha: {
+    nacimiento: {
         type: DataTypes.STRING
     },
     estado: {
+        type: DataTypes.BOOLEAN
+    },
+    idUsuario: {
         type: DataTypes.INTEGER
     },
-    idusuario: {
-        type: DataTypes.STRING
-    },
+
 
 }, {
     timestamps: false
 });
 
-Persona.belongsTo(Usuario, { foreignKey: 'idusuario', targetKey: 'uid' });
 
 
 export default Persona;

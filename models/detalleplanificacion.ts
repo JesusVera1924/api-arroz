@@ -1,35 +1,42 @@
 import { DataTypes } from 'sequelize';
 import db from '../db/connection';
-import Usuario from './usuario';
 
-const listTask = db.define('listtask', {
-    uid: {
+const Detalleplanificacion = db.define('detalleplanificacion', {
+    iddetalleplanificacion: {
         primaryKey: true,
         type: DataTypes.STRING
     },
-    referencia: {
+    idPlanificacion: {
         type: DataTypes.STRING
     },
-    referencia2: {
+    actividad: {
+        type: DataTypes.STRING
+    },
+    idTerreno: {
+        type: DataTypes.STRING
+    },
+    idtipograminea: {
+        type: DataTypes.STRING
+    },
+    inicio: {
+        type: DataTypes.STRING
+    },
+    fin: {
         type: DataTypes.STRING
     },
     observacion: {
         type: DataTypes.STRING
     },
-    comentario: {
+    observacion2: {
         type: DataTypes.STRING
     },
     estado: {
-        type: DataTypes.STRING
-    },
-    fin: {
-        type: DataTypes.DATE
-    },
-    idTask: {
-        type: DataTypes.STRING
+        type: DataTypes.BOOLEAN
     }
+
+
+
 }, { freezeTableName: true });
 
-listTask.belongsTo(Usuario, { foreignKey: 'idTask', targetKey: 'uid' });
 
-export default listTask;
+export default Detalleplanificacion;

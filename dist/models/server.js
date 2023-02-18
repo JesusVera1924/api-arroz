@@ -12,6 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const cors_1 = __importDefault(require("cors"));
+const connection_1 = __importDefault(require("../db/connection"));
 const express_1 = __importDefault(require("express"));
 //exportacion e rutas
 const usuario_1 = __importDefault(require("../routes/usuario"));
@@ -23,16 +25,16 @@ const terreno_1 = __importDefault(require("../routes/terreno"));
 const finca_1 = __importDefault(require("../routes/finca"));
 const listinsumo_1 = __importDefault(require("../routes/listinsumo"));
 const listpersonal_1 = __importDefault(require("../routes/listpersonal"));
-const task_1 = __importDefault(require("../routes/task"));
-const listtask_1 = __importDefault(require("../routes/listtask"));
 const listmaquinarias_1 = __importDefault(require("../routes/listmaquinarias"));
 const historial_1 = __importDefault(require("../routes/historial"));
-const cronograma_1 = __importDefault(require("../routes/cronograma"));
-const dwre_1 = __importDefault(require("../routes/dwre"));
-const listcultivo_1 = __importDefault(require("../routes/listcultivo"));
+const planificacion_1 = __importDefault(require("../routes/planificacion"));
+const detalleplanificacion_1 = __importDefault(require("../routes/detalleplanificacion"));
+const tiposenfermedades_1 = __importDefault(require("../routes/tiposenfermedades"));
+const tiposgraminea_1 = __importDefault(require("../routes/tiposgraminea"));
+const tiposinsumos_1 = __importDefault(require("../routes/tiposinsumos"));
+const tiposmaquinarias_1 = __importDefault(require("../routes/tiposmaquinarias"));
+const tiposplagas_1 = __importDefault(require("../routes/tiposplagas"));
 const listerrenos_1 = __importDefault(require("../routes/listerrenos"));
-const cors_1 = __importDefault(require("cors"));
-const connection_1 = __importDefault(require("../db/connection"));
 class Server {
     constructor() {
         this.apiPaths = {
@@ -40,10 +42,10 @@ class Server {
             enfermedad: '/api/enfermedades',
             insumo: '/api/insumos',
             maquinaria: '/api/maquinarias',
-            terreno: '/api/terrenos',
+            terreno: '/api/terreno',
             persona: '/api/personas',
             finca: '/api/fincas',
-            listInsumo: '/api/listInsumo',
+            listInsumo: '/api/listainsumos',
             listPersona: '/api/listPersonal',
             task: '/api/task',
             listMaquinarias: '/api/listmaquinarias',
@@ -52,7 +54,14 @@ class Server {
             dwre: '/api/dwre',
             listtask: '/api/listtask',
             listcultivo: '/api/listcultivos',
-            listterreno: '/api/listterreno'
+            listterreno: '/api/listterreno',
+            planificacion: '/api/planificacion',
+            detalleplanificacion: '/api/detalleplanificacion',
+            tiposenfermedades: '/api/tiposenfermedades',
+            tiposgraminea: '/api/tiposgraminea',
+            tiposinsumos: '/api/tiposinsumos',
+            tiposmaquinarias: '/api/tiposmaquinarias',
+            tiposplagas: '/api/tiposplagas',
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
@@ -90,14 +99,16 @@ class Server {
             this.app.use(this.apiPaths.finca, finca_1.default),
             this.app.use(this.apiPaths.listInsumo, listinsumo_1.default),
             this.app.use(this.apiPaths.listPersona, listpersonal_1.default),
-            this.app.use(this.apiPaths.task, task_1.default),
             this.app.use(this.apiPaths.listMaquinarias, listmaquinarias_1.default),
             this.app.use(this.apiPaths.historial, historial_1.default),
-            this.app.use(this.apiPaths.cronograma, cronograma_1.default),
-            this.app.use(this.apiPaths.dwre, dwre_1.default),
-            this.app.use(this.apiPaths.listtask, listtask_1.default),
-            this.app.use(this.apiPaths.listcultivo, listcultivo_1.default),
-            this.app.use(this.apiPaths.listterreno, listerrenos_1.default);
+            this.app.use(this.apiPaths.listterreno, listerrenos_1.default),
+            this.app.use(this.apiPaths.planificacion, planificacion_1.default),
+            this.app.use(this.apiPaths.detalleplanificacion, detalleplanificacion_1.default),
+            this.app.use(this.apiPaths.tiposenfermedades, tiposenfermedades_1.default),
+            this.app.use(this.apiPaths.tiposgraminea, tiposgraminea_1.default),
+            this.app.use(this.apiPaths.tiposinsumos, tiposinsumos_1.default),
+            this.app.use(this.apiPaths.tiposmaquinarias, tiposmaquinarias_1.default),
+            this.app.use(this.apiPaths.tiposplagas, tiposplagas_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {

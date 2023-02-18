@@ -6,17 +6,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
 const Insumo = connection_1.default.define('insumos', {
-    uid: {
+    idinsumos: {
         primaryKey: true,
+        type: sequelize_1.DataTypes.STRING
+    },
+    insumoTipoId: {
         type: sequelize_1.DataTypes.STRING
     },
     nombre: {
         type: sequelize_1.DataTypes.STRING
     },
-    clase: {
-        type: sequelize_1.DataTypes.STRING
+    fechaCaducidad: {
+        type: sequelize_1.DataTypes.DATE
     },
     observacion: {
+        type: sequelize_1.DataTypes.STRING
+    },
+    unidades: {
         type: sequelize_1.DataTypes.STRING
     },
     estado: {

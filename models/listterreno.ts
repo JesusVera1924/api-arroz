@@ -1,6 +1,5 @@
 import { DataTypes } from 'sequelize';
 import db from '../db/connection';
-import Usuario from './usuario';
 
 const listerrenos = db.define('listterrenos', {
     uid: {
@@ -15,6 +14,5 @@ const listerrenos = db.define('listterrenos', {
     }
 }, { freezeTableName: true });
 
-listerrenos.belongsTo(Usuario, { foreignKey: 'idTerreno', targetKey: 'uid' });
 
 export default listerrenos;

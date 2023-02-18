@@ -1,8 +1,8 @@
 import { DataTypes } from 'sequelize';
 import db from '../db/connection';
 
-const Finca = db.define('fincas', {
-    uid: {
+const Finca = db.define('finca', {
+    idfinca: {
         primaryKey: true,
         type: DataTypes.STRING
     },
@@ -22,7 +22,7 @@ const Finca = db.define('fincas', {
         type: DataTypes.INTEGER
     },
 
-});
+}, { freezeTableName: true });
 
 
 export default Finca;

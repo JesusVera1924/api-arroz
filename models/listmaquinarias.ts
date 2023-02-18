@@ -1,16 +1,19 @@
 import { DataTypes } from 'sequelize';
 import db from '../db/connection';
 
-const listMaquinarias = db.define('listmaquinarias', {
-    uid: {
+const listMaquinarias = db.define('listamaquinarias', {
+    idlistamaquinaria: {
         primaryKey: true,
         type: DataTypes.STRING
     },
-    referencia: {
+    idMaquinaria: {
         type: DataTypes.STRING
     },
-    idmaquinaria: {
+    idPlanificacion: {
         type: DataTypes.STRING
+    },
+    estado: {
+        type: DataTypes.BOOLEAN
     }
 }, { freezeTableName: true });
 

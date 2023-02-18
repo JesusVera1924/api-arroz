@@ -1,20 +1,21 @@
 import { DataTypes } from 'sequelize';
 import db from '../db/connection';
-import Usuario from './usuario';
 
-const listPersonal = db.define('listpersonal', {
-    uid: {
+const listPersonal = db.define('listadepersonal', {
+    idlistadepersonal: {
         primaryKey: true,
         type: DataTypes.STRING
     },
-    referencia: {
+    idPersonal: {
         type: DataTypes.STRING
     },
-    idUsuario: {
+    idPlanificacion: {
+        type: DataTypes.STRING
+    },
+    estado: {
         type: DataTypes.STRING
     }
 }, { freezeTableName: true });
 
-listPersonal.belongsTo(Usuario, { foreignKey: 'idUsuario', targetKey: 'uid' });
 
 export default listPersonal;

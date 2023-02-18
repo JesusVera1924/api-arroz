@@ -1,3 +1,5 @@
+import cors from 'cors';
+import db from '../db/connection';
 import express, { Application } from 'express';
 //exportacion e rutas
 import userRoutes from '../routes/usuario';
@@ -9,18 +11,17 @@ import terrenoRoutes from '../routes/terreno';
 import fincaRoutes from '../routes/finca';
 import listInsumoRoutes from '../routes/listinsumo';
 import listPersonalRoutes from '../routes/listpersonal';
-import taskRoutes from '../routes/task';
-import listtaskRoutes from '../routes/listtask';
 import listMaquinariasRoutes from '../routes/listmaquinarias';
 import historialRoutes from '../routes/historial';
-import cronogramaRoutes from '../routes/cronograma';
-import dwreRoutes from '../routes/dwre';
-import listCultivoRoute from '../routes/listcultivo';
-import listTerrenoRoute from '../routes/listerrenos';
 
-
-import cors from 'cors';
-import db from '../db/connection';
+import planificacionRoute from '../routes/planificacion';
+import detalleplanificacionRoute from '../routes/detalleplanificacion';
+import tiposenfermedadesRoute from '../routes/tiposenfermedades';
+import tiposgramineaRoute from '../routes/tiposgraminea';
+import tiposinsumosRoute from '../routes/tiposinsumos';
+import tiposmaquinariasRoute from '../routes/tiposmaquinarias';
+import tiposplagasRoute from '../routes/tiposplagas';
+import listTerrenos from '../routes/listerrenos';
 
 
 class Server {
@@ -33,10 +34,10 @@ class Server {
         enfermedad: '/api/enfermedades',
         insumo: '/api/insumos',
         maquinaria: '/api/maquinarias',
-        terreno: '/api/terrenos',
+        terreno: '/api/terreno',
         persona: '/api/personas',
         finca: '/api/fincas',
-        listInsumo: '/api/listInsumo',
+        listInsumo: '/api/listainsumos',
         listPersona: '/api/listPersonal',
         task: '/api/task',
         listMaquinarias: '/api/listmaquinarias',
@@ -45,7 +46,15 @@ class Server {
         dwre: '/api/dwre',
         listtask: '/api/listtask',
         listcultivo: '/api/listcultivos',
-        listterreno: '/api/listterreno'
+        listterreno: '/api/listterreno',
+
+        planificacion: '/api/planificacion',
+        detalleplanificacion: '/api/detalleplanificacion',
+        tiposenfermedades: '/api/tiposenfermedades',
+        tiposgraminea: '/api/tiposgraminea',
+        tiposinsumos: '/api/tiposinsumos',
+        tiposmaquinarias: '/api/tiposmaquinarias',
+        tiposplagas: '/api/tiposplagas',
     }
 
     constructor() {
@@ -93,14 +102,16 @@ class Server {
             this.app.use(this.apiPaths.finca, fincaRoutes),
             this.app.use(this.apiPaths.listInsumo, listInsumoRoutes),
             this.app.use(this.apiPaths.listPersona, listPersonalRoutes),
-            this.app.use(this.apiPaths.task, taskRoutes),
             this.app.use(this.apiPaths.listMaquinarias, listMaquinariasRoutes),
             this.app.use(this.apiPaths.historial, historialRoutes),
-            this.app.use(this.apiPaths.cronograma, cronogramaRoutes),
-            this.app.use(this.apiPaths.dwre, dwreRoutes),
-            this.app.use(this.apiPaths.listtask, listtaskRoutes),
-            this.app.use(this.apiPaths.listcultivo, listCultivoRoute),
-            this.app.use(this.apiPaths.listterreno, listTerrenoRoute)
+            this.app.use(this.apiPaths.listterreno, listTerrenos),
+            this.app.use(this.apiPaths.planificacion, planificacionRoute),
+            this.app.use(this.apiPaths.detalleplanificacion, detalleplanificacionRoute),
+            this.app.use(this.apiPaths.tiposenfermedades, tiposenfermedadesRoute),
+            this.app.use(this.apiPaths.tiposgraminea, tiposgramineaRoute),
+            this.app.use(this.apiPaths.tiposinsumos, tiposinsumosRoute),
+            this.app.use(this.apiPaths.tiposmaquinarias, tiposmaquinariasRoute),
+            this.app.use(this.apiPaths.tiposplagas, tiposplagasRoute)
     }
 
 

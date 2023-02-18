@@ -1,24 +1,21 @@
 import { DataTypes } from 'sequelize';
 import db from '../db/connection';
 
-const Dwre = db.define('dwre', {
-    uid: {
+const Tiposinsumos = db.define('tiposinsumos', {
+    idtiposinsumos: {
         primaryKey: true,
         type: DataTypes.STRING
     },
-    tiporeporte: {
-        type: DataTypes.STRING
+    cantidad: {
+        type: DataTypes.INTEGER
     },
     observacion: {
         type: DataTypes.STRING
     },
-    idusuario: {
-        type: DataTypes.STRING
-    },
-
-
-
+    estado: {
+        type: DataTypes.BOOLEAN
+    }
 }, { freezeTableName: true });
 
 
-export default Dwre;
+export default Tiposinsumos;

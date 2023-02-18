@@ -2,22 +2,26 @@ import { DataTypes } from 'sequelize';
 import db from '../db/connection';
 
 const Maquinarias = db.define('maquinarias', {
-    uid: {
+    idmaquinarias: {
         primaryKey: true,
         type: DataTypes.STRING
     },
     nombre: {
         type: DataTypes.STRING
     },
-    tipo: {
+    identificacion: {
         type: DataTypes.STRING
     },
-    observacion: {
+    maquinariaTipoId: {
         type: DataTypes.STRING
+    },
+    capacidad: {
+        type: DataTypes.INTEGER
     },
     estado: {
         type: DataTypes.INTEGER
     },
+
 });
 
 
