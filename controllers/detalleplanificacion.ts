@@ -15,6 +15,30 @@ export const getDetallePlanificaciones = async (req: Request, res: Response) => 
     res.json(detallesPlanificacion);
 }
 
+export const getDetalleUsuariosPlanificaciones = async (req: Request, res: Response) => {
+
+    const { id } = req.params;
+
+    const detallesPlanificacion = await DetallePlanificacion.findAll({
+        where: {
+            observacion: id,
+            estado: 1,
+        }
+    });
+
+    const detallesPlanificacion2 = await DetallePlanificacion.findAll({
+        where: {
+            observacion: "-",
+            estado: 1,
+        }
+    });
+
+    const list3 = [...detallesPlanificacion, ...detallesPlanificacion2]
+
+    res.json(list3);
+}
+
+
 export const getDetallePlanificacion = async (req: Request, res: Response) => {
 
     const { id } = req.params;

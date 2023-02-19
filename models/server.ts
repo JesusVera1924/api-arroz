@@ -39,12 +39,11 @@ class Server {
         finca: '/api/fincas',
         listInsumo: '/api/listainsumos',
         listPersona: '/api/listPersonal',
-        task: '/api/task',
         listMaquinarias: '/api/listmaquinarias',
         historial: '/api/historial',
         cronograma: '/api/cronograma',
         dwre: '/api/dwre',
-        listtask: '/api/listtask',
+
         listcultivo: '/api/listcultivos',
         listterreno: '/api/listterreno',
 
