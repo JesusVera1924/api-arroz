@@ -14,6 +14,20 @@ export const getTerrenos = async (req: Request, res: Response) => {
     res.json(terrenos);
 }
 
+export const getFincaAndTerrenos = async (req: Request, res: Response) => {
+
+    const { id } = req.params;
+
+    const terrenos = await Terreno.findAll({
+        where: {
+            idFinca: id,
+            estado: 1
+        }
+    });
+
+    res.json(terrenos);
+}
+
 export const getTerreno = async (req: Request, res: Response) => {
 
     const { id } = req.params;

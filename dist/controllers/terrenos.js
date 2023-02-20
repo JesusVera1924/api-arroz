@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteTerreno = exports.putTerreno = exports.postTerreno = exports.getTerreno = exports.getTerrenos = void 0;
+exports.deleteTerreno = exports.putTerreno = exports.postTerreno = exports.getTerreno = exports.getFincaAndTerrenos = exports.getTerrenos = void 0;
 const terreno_1 = __importDefault(require("../models/terreno"));
 const getTerrenos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const terrenos = yield terreno_1.default.findAll({
@@ -23,6 +23,17 @@ const getTerrenos = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     res.json(terrenos);
 });
 exports.getTerrenos = getTerrenos;
+const getFincaAndTerrenos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const terrenos = yield terreno_1.default.findAll({
+        where: {
+            idFinca: id,
+            estado: 1
+        }
+    });
+    res.json(terrenos);
+});
+exports.getFincaAndTerrenos = getFincaAndTerrenos;
 const getTerreno = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const terreno = yield terreno_1.default.findByPk(id);

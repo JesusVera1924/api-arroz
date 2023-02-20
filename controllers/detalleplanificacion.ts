@@ -65,14 +65,10 @@ export const postDetallePlanificacion = async (req: Request, res: Response) => {
     try {
 
         const detallePlanificacion = DetallePlanificacion.build(body);
-
         await detallePlanificacion.save();
-
         res.json(detallePlanificacion);
 
-
     } catch (error) {
-
         console.log(error);
         res.status(500).json({
             msg: 'Hable con el administrador'
