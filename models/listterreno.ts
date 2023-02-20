@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import db from '../db/connection';
 
-const listerrenos = db.define('listterrenos', {
+const listerrenos = db.define('listadeterrenos', {
     uid: {
         primaryKey: true,
         type: DataTypes.STRING
