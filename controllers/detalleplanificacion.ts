@@ -7,6 +7,7 @@ import DetallePlanificacion from '../models/detalleplanificacion';
 export const getDetallePlanificaciones = async (req: Request, res: Response) => {
 
     const detallesPlanificacion = await DetallePlanificacion.findAll({
+
         where: {
             estado: 1,
         }
@@ -17,12 +18,13 @@ export const getDetallePlanificaciones = async (req: Request, res: Response) => 
 
 export const getDetalleUsuariosPlanificaciones = async (req: Request, res: Response) => {
 
-    const { id } = req.params;
+    const { body } = req;
+
 
     const detallesPlanificacion = await DetallePlanificacion.findAll({
         where: {
-            observacion: id,
-            estado: 1,
+            observacion: body.referencia,
+            estado: body.obs,
         }
     });
 

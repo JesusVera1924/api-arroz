@@ -13,14 +13,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deletePlanificacion = exports.putPlanificacion = exports.postPlanificacion = exports.getPlanificacion = exports.getPlanificaciones = void 0;
+const finca_1 = __importDefault(require("../models/finca"));
 const planificacion_1 = __importDefault(require("../models/planificacion"));
 const getPlanificaciones = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const detallesPlanificacion = yield planificacion_1.default.findAll({
+    const planificacion = yield planificacion_1.default.findAll({
+        include: [finca_1.default],
         where: {
             estado: 1,
         }
     });
-    res.json(detallesPlanificacion);
+    res.json(planificacion);
 });
 exports.getPlanificaciones = getPlanificaciones;
 const getPlanificacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

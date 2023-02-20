@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteDetallePlanificacion = exports.putDetallePlanificacion = exports.postDetallePlanificacion = exports.getDetallePlanificacion = exports.getDetallePlanificaciones = void 0;
+exports.deleteDetallePlanificacion = exports.putDetallePlanificacion = exports.postDetallePlanificacion = exports.getDetallePlanificacion = exports.getDetalleUsuariosPlanificaciones = exports.getDetallePlanificaciones = void 0;
 const detalleplanificacion_1 = __importDefault(require("../models/detalleplanificacion"));
 const getDetallePlanificaciones = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const detallesPlanificacion = yield detalleplanificacion_1.default.findAll({
@@ -23,6 +23,24 @@ const getDetallePlanificaciones = (req, res) => __awaiter(void 0, void 0, void 0
     res.json(detallesPlanificacion);
 });
 exports.getDetallePlanificaciones = getDetallePlanificaciones;
+const getDetalleUsuariosPlanificaciones = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { body } = req;
+    const detallesPlanificacion = yield detalleplanificacion_1.default.findAll({
+        where: {
+            observacion: body.referencia,
+            estado: body.obs,
+        }
+    });
+    const detallesPlanificacion2 = yield detalleplanificacion_1.default.findAll({
+        where: {
+            observacion: "-",
+            estado: 1,
+        }
+    });
+    const list3 = [...detallesPlanificacion, ...detallesPlanificacion2];
+    res.json(list3);
+});
+exports.getDetalleUsuariosPlanificaciones = getDetalleUsuariosPlanificaciones;
 const getDetallePlanificacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const detallesPlanificacion = yield detalleplanificacion_1.default.findByPk(id);

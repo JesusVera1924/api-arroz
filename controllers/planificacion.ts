@@ -1,18 +1,22 @@
 
 import { Request, Response } from 'express';
 import { json } from 'sequelize/types';
+import Finca from '../models/finca';
+import listinsumos from '../models/listinsumos';
+import listPersonal from '../models/listpersonal';
 import Planificacion from '../models/planificacion';
 
 
 export const getPlanificaciones = async (req: Request, res: Response) => {
 
-    const detallesPlanificacion = await Planificacion.findAll({
+    const planificacion = await Planificacion.findAll({
+        include: [Finca],
         where: {
             estado: 1,
         }
     });
 
-    res.json(detallesPlanificacion);
+    res.json(planificacion);
 }
 
 export const getPlanificacion = async (req: Request, res: Response) => {

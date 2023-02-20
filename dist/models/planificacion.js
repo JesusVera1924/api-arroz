@@ -5,12 +5,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
-const Usuario = connection_1.default.define('planificacion', {
+const finca_1 = __importDefault(require("./finca"));
+const usuario_1 = __importDefault(require("./usuario"));
+const planificacion = connection_1.default.define('planificacion', {
     idplanificacion: {
         primaryKey: true,
-        type: sequelize_1.DataTypes.STRING
-    },
-    idFinca: {
         type: sequelize_1.DataTypes.STRING
     },
     humedad: {
@@ -20,7 +19,7 @@ const Usuario = connection_1.default.define('planificacion', {
         type: sequelize_1.DataTypes.BOOLEAN
     },
     idListInsumo: {
-        type: sequelize_1.DataTypes.TEXT
+        type: sequelize_1.DataTypes.STRING
     },
     idListPersonal: {
         type: sequelize_1.DataTypes.STRING
@@ -44,5 +43,7 @@ const Usuario = connection_1.default.define('planificacion', {
         type: sequelize_1.DataTypes.BOOLEAN
     },
 }, { freezeTableName: true });
-exports.default = Usuario;
+planificacion.belongsTo(finca_1.default, { foreignKey: 'idFinca', targetKey: 'idfinca' });
+planificacion.belongsTo(usuario_1.default, { foreignKey: 'idUsuario', targetKey: 'idusuarios' });
+exports.default = planificacion;
 //# sourceMappingURL=planificacion.js.map

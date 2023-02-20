@@ -1,12 +1,11 @@
 import { DataTypes } from 'sequelize';
 import db from '../db/connection';
+import Finca from './finca';
+import Usuario from './usuario';
 
-const Usuario = db.define('planificacion', {
+const planificacion = db.define('planificacion', {
     idplanificacion: {
         primaryKey: true,
-        type: DataTypes.STRING
-    },
-    idFinca: {
         type: DataTypes.STRING
     },
     humedad: {
@@ -16,7 +15,7 @@ const Usuario = db.define('planificacion', {
         type: DataTypes.BOOLEAN
     },
     idListInsumo: {
-        type: DataTypes.TEXT
+        type: DataTypes.STRING
     },
     idListPersonal: {
         type: DataTypes.STRING
@@ -42,5 +41,7 @@ const Usuario = db.define('planificacion', {
 
 }, { freezeTableName: true });
 
+planificacion.belongsTo(Finca, { foreignKey: 'idFinca', targetKey: 'idfinca' });
+planificacion.belongsTo(Usuario, { foreignKey: 'idUsuario', targetKey: 'idusuarios' });
 
-export default Usuario;
+export default planificacion;
