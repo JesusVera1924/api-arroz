@@ -22,11 +22,14 @@ const Detalleplanificacion = connection_1.default.define('detalleplanificacion',
     idtipograminea: {
         type: sequelize_1.DataTypes.STRING
     },
-    inicio: {
+    tipo: {
         type: sequelize_1.DataTypes.STRING
     },
+    inicio: {
+        type: sequelize_1.DataTypes.DATE
+    },
     fin: {
-        type: sequelize_1.DataTypes.STRING
+        type: sequelize_1.DataTypes.DATE
     },
     observacion: {
         type: sequelize_1.DataTypes.STRING

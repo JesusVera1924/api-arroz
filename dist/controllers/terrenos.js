@@ -13,12 +13,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteTerreno = exports.putTerreno = exports.postTerreno = exports.getTerreno = exports.getFincaAndTerrenos = exports.getTerrenos = void 0;
+const finca_1 = __importDefault(require("../models/finca"));
 const terreno_1 = __importDefault(require("../models/terreno"));
 const getTerrenos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const terrenos = yield terreno_1.default.findAll({
         where: {
             estado: 1,
-        }
+        },
+        include: [finca_1.default]
     });
     res.json(terrenos);
 });
@@ -29,7 +31,8 @@ const getFincaAndTerrenos = (req, res) => __awaiter(void 0, void 0, void 0, func
         where: {
             idFinca: id,
             estado: 1
-        }
+        },
+        include: [finca_1.default]
     });
     res.json(terrenos);
 });

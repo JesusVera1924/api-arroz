@@ -19,11 +19,14 @@ const Detalleplanificacion = db.define('detalleplanificacion', {
     idtipograminea: {
         type: DataTypes.STRING
     },
-    inicio: {
+    tipo: {
         type: DataTypes.STRING
     },
+    inicio: {
+        type: DataTypes.DATE
+    },
     fin: {
-        type: DataTypes.STRING
+        type: DataTypes.DATE
     },
     observacion: {
         type: DataTypes.STRING

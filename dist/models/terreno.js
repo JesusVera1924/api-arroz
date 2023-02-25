@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
+const finca_1 = __importDefault(require("./finca"));
 const Terreno = connection_1.default.define('terreno', {
     idterreno: {
         primaryKey: true,
@@ -38,5 +39,6 @@ const Terreno = connection_1.default.define('terreno', {
         type: sequelize_1.DataTypes.BOOLEAN
     },
 }, { freezeTableName: true });
+Terreno.belongsTo(finca_1.default, { foreignKey: 'idFinca', targetKey: 'idfinca' });
 exports.default = Terreno;
 //# sourceMappingURL=terreno.js.map

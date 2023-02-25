@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
 import db from '../db/connection';
+import Finca from './finca';
 
 const Terreno = db.define('terreno', {
     idterreno: {
@@ -35,5 +36,7 @@ const Terreno = db.define('terreno', {
     },
 }, { freezeTableName: true });
 
+
+Terreno.belongsTo(Finca, { foreignKey: 'idFinca', targetKey: 'idfinca' });
 
 export default Terreno;

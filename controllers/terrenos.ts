@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { json } from 'sequelize/types';
+import Finca from '../models/finca';
 import Terreno from '../models/terreno';
 
 
@@ -8,7 +9,8 @@ export const getTerrenos = async (req: Request, res: Response) => {
     const terrenos = await Terreno.findAll({
         where: {
             estado: 1,
-        }
+        },
+        include: [Finca]
     });
 
     res.json(terrenos);
@@ -22,7 +24,8 @@ export const getFincaAndTerrenos = async (req: Request, res: Response) => {
         where: {
             idFinca: id,
             estado: 1
-        }
+        },
+        include: [Finca]
     });
 
     res.json(terrenos);
