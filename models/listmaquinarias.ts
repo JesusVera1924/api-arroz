@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 import db from '../db/connection';
 
-const listMaquinarias = db.define('listamaquinarias', {
+const listMaquinarias = db.define('listmaquinarias', {
     idlistamaquinaria: {
         primaryKey: true,
         type: DataTypes.STRING
