@@ -6,15 +6,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
 const listerrenos = connection_1.default.define('listadeterrenos', {
-    uid: {
+    idlistadeterrenos: {
         primaryKey: true,
-        type: sequelize_1.DataTypes.STRING
-    },
-    referencia: {
         type: sequelize_1.DataTypes.STRING
     },
     idTerreno: {
         type: sequelize_1.DataTypes.STRING
+    },
+    idGramineas: {
+        type: sequelize_1.DataTypes.STRING
+    },
+    idenfermedad: {
+        type: sequelize_1.DataTypes.STRING
+    },
+    idPlanificacion: {
+        type: sequelize_1.DataTypes.STRING
+    },
+    ocupado: {
+        type: sequelize_1.DataTypes.BOOLEAN
+    },
+    estado: {
+        type: sequelize_1.DataTypes.BOOLEAN
     }
 }, { freezeTableName: true });
 exports.default = listerrenos;

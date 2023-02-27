@@ -2,6 +2,7 @@
 import { Request, Response } from 'express';
 import { json } from 'sequelize/types';
 import DetallePlanificacion from '../models/detalleplanificacion';
+import ListPersonal from '../models/listpersonal';
 
 
 export const getDetallePlanificaciones = async (req: Request, res: Response) => {
@@ -18,25 +19,34 @@ export const getDetallePlanificaciones = async (req: Request, res: Response) => 
 
 export const getDetalleUsuariosPlanificaciones = async (req: Request, res: Response) => {
 
-    const { body } = req;
+    try {
+        const { body } = req;
+        var list3;
 
+        const detalleAct = await ListPersonal.findAll({
+            where: {
+                idPersonal: body.referencia,
+            }
+        });
 
-    const detallesPlanificacion = await DetallePlanificacion.findAll({
-        where: {
-            observacion: body.referencia,
-            estado: body.obs,
+        for (let numero of detalleAct) {
+            console.log(numero.dataValues.idPlanificacion);
+            const detallesPlanificacion2 = await DetallePlanificacion.findAll({
+                where: {
+                    idPlanificacion: numero.dataValues.idPlanificacion,
+                    estado: 1,
+                }
+            });
+
+            if (detallesPlanificacion2.length != 0) {
+                list3 = [...detallesPlanificacion2]
+            }
+
         }
-    });
 
-    const detallesPlanificacion2 = await DetallePlanificacion.findAll({
-        where: {
-            observacion: "-",
-            estado: 1,
-        }
-    });
-
-    const list3 = [...detallesPlanificacion, ...detallesPlanificacion2]
-
+    } catch (error) {
+        console.error(error);
+    }
     res.json(list3);
 }
 

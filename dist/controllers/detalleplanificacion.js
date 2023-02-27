@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteDetallePlanificacion = exports.putDetallePlanificacion = exports.postDetallePlanificacion = exports.getDetallePlanificacion = exports.getDetalleUsuariosPlanificaciones = exports.getDetallePlanificaciones = void 0;
 const detalleplanificacion_1 = __importDefault(require("../models/detalleplanificacion"));
+const listpersonal_1 = __importDefault(require("../models/listpersonal"));
 const getDetallePlanificaciones = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const detallesPlanificacion = yield detalleplanificacion_1.default.findAll({
         where: {
@@ -24,20 +25,30 @@ const getDetallePlanificaciones = (req, res) => __awaiter(void 0, void 0, void 0
 });
 exports.getDetallePlanificaciones = getDetallePlanificaciones;
 const getDetalleUsuariosPlanificaciones = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { body } = req;
-    const detallesPlanificacion = yield detalleplanificacion_1.default.findAll({
-        where: {
-            observacion: body.referencia,
-            estado: body.obs,
+    try {
+        const { body } = req;
+        var list3;
+        const detalleAct = yield listpersonal_1.default.findAll({
+            where: {
+                idPersonal: body.referencia,
+            }
+        });
+        for (let numero of detalleAct) {
+            console.log(numero.dataValues.idPlanificacion);
+            const detallesPlanificacion2 = yield detalleplanificacion_1.default.findAll({
+                where: {
+                    idPlanificacion: numero.dataValues.idPlanificacion,
+                    estado: 1,
+                }
+            });
+            if (detallesPlanificacion2.length != 0) {
+                list3 = [...detallesPlanificacion2];
+            }
         }
-    });
-    const detallesPlanificacion2 = yield detalleplanificacion_1.default.findAll({
-        where: {
-            observacion: "-",
-            estado: 1,
-        }
-    });
-    const list3 = [...detallesPlanificacion, ...detallesPlanificacion2];
+    }
+    catch (error) {
+        console.error(error);
+    }
     res.json(list3);
 });
 exports.getDetalleUsuariosPlanificaciones = getDetalleUsuariosPlanificaciones;
