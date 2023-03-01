@@ -14,13 +14,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteInsumo = exports.putInsumo = exports.postInsumo = exports.getInsumo = exports.getInsumos = void 0;
 const insumo_1 = __importDefault(require("../models/insumo"));
+const proveedor_1 = __importDefault(require("../models/proveedor"));
 const getInsumos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const insumos = yield insumo_1.default.findAll({
-        where: {
-            estado: 1,
-        }
-    });
-    res.json(insumos);
+    try {
+        const insumos = yield insumo_1.default.findAll({
+            include: [proveedor_1.default],
+            where: {
+                estado: 1,
+            },
+        });
+        res.json(insumos);
+    }
+    catch (error) {
+        console.error(error);
+    }
 });
 exports.getInsumos = getInsumos;
 const getInsumo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

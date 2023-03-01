@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getPersona, getPersonas, postPersona, putPersona, deletePersona } from '../controllers/personas';
+import { getPersona, getPersonas, getPersonaUsuario, postPersona, putPersona, deletePersona } from '../controllers/personas';
 
 
 const router = Router();
@@ -7,6 +7,7 @@ const router = Router();
 
 router.get('/', getPersonas);
 router.get('/:id', getPersona);
+router.get('/usuario/:id', getPersonaUsuario);
 router.post('/', postPersona);
 router.put('/:id', putPersona);
 router.delete('/:id', deletePersona);

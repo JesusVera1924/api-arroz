@@ -20,16 +20,20 @@ export const getDetallePlanificaciones = async (req: Request, res: Response) => 
 export const getDetalleUsuariosPlanificaciones = async (req: Request, res: Response) => {
 
     try {
-        const { body } = req;
-        var list3;
+        const { body } = req; /// CODIGO DE USUARIO Y ESTADO
+        var list3 = [];
 
         const detalleAct = await ListPersonal.findAll({
             where: {
-                idPersonal: body.referencia,
+                idPersonal: body.referencia,//P-01
             }
         });
 
+        // TODO LOS REGISTROS DE DETALLE DE ACTIVIDADES QUE ESTA VINCULADO EL USUARIO QUE ESTA LOGEADO EN LA APP
+
+
         for (let numero of detalleAct) {
+            // OBJETO DEL DETALLE DE ACTIVIDAD
             console.log(numero.dataValues.idPlanificacion);
             const detallesPlanificacion2 = await DetallePlanificacion.findAll({
                 where: {
@@ -39,7 +43,10 @@ export const getDetalleUsuariosPlanificaciones = async (req: Request, res: Respo
             });
 
             if (detallesPlanificacion2.length != 0) {
-                list3 = [...detallesPlanificacion2]
+                //----> AGREGAR ESTA SOBREESCRIBIENDO
+                for (let numero of detallesPlanificacion2) {
+                    list3.push(numero);
+                }
             }
 
         }

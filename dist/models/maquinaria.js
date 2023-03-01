@@ -19,6 +19,12 @@ const Maquinarias = connection_1.default.define('maquinarias', {
     maquinariaTipoId: {
         type: sequelize_1.DataTypes.STRING
     },
+    procedencia: {
+        type: sequelize_1.DataTypes.STRING
+    },
+    fechacompra: {
+        type: sequelize_1.DataTypes.DATE
+    },
     capacidad: {
         type: sequelize_1.DataTypes.INTEGER
     },

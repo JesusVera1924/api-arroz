@@ -21,7 +21,8 @@ import tiposgramineaRoute from '../routes/tiposgraminea';
 import tiposinsumosRoute from '../routes/tiposinsumos';
 import tiposmaquinariasRoute from '../routes/tiposmaquinarias';
 import tiposplagasRoute from '../routes/tiposplagas';
-import listTerrenos from '../routes/listerrenos';
+import listTerrenosRoute from '../routes/listerrenos';
+import proveedorRoute from '../routes/proveedores';
 
 
 class Server {
@@ -54,6 +55,7 @@ class Server {
         tiposinsumos: '/api/tiposinsumos',
         tiposmaquinarias: '/api/tiposmaquinarias',
         tiposplagas: '/api/tiposplagas',
+        proveedor: '/api/proveedor',
     }
 
     constructor() {
@@ -103,14 +105,15 @@ class Server {
             this.app.use(this.apiPaths.listPersona, listPersonalRoutes),
             this.app.use(this.apiPaths.listMaquinarias, listMaquinariasRoutes),
             this.app.use(this.apiPaths.historial, historialRoutes),
-            this.app.use(this.apiPaths.listterreno, listTerrenos),
+            this.app.use(this.apiPaths.listterreno, listTerrenosRoute),
             this.app.use(this.apiPaths.planificacion, planificacionRoute),
             this.app.use(this.apiPaths.detalleplanificacion, detalleplanificacionRoute),
             this.app.use(this.apiPaths.tiposenfermedades, tiposenfermedadesRoute),
             this.app.use(this.apiPaths.tiposgraminea, tiposgramineaRoute),
             this.app.use(this.apiPaths.tiposinsumos, tiposinsumosRoute),
             this.app.use(this.apiPaths.tiposmaquinarias, tiposmaquinariasRoute),
-            this.app.use(this.apiPaths.tiposplagas, tiposplagasRoute)
+            this.app.use(this.apiPaths.tiposplagas, tiposplagasRoute),
+            this.app.use(this.apiPaths.proveedor, proveedorRoute)
     }
 
 

@@ -1,17 +1,26 @@
 import { Request, Response } from 'express';
 import { json } from 'sequelize/types';
 import Insumo from '../models/insumo';
+import proveedores from '../models/proveedor';
 
 
 export const getInsumos = async (req: Request, res: Response) => {
 
-    const insumos = await Insumo.findAll({
-        where: {
-            estado: 1,
-        }
-    });
+    try {
+        const insumos = await Insumo.findAll({
+            include: [proveedores],
+            where: {
+                estado: 1,
 
-    res.json(insumos);
+            },
+
+        });
+        res.json(insumos);
+    } catch (error) {
+        console.error(error);
+    }
+
+
 }
 
 export const getInsumo = async (req: Request, res: Response) => {

@@ -5,13 +5,17 @@ import Persona from '../models/persona';
 
 export const getPersonas = async (req: Request, res: Response) => {
 
-    const personas = await Persona.findAll({
-        where: {
-            estado: 1,
-        }
-    });
+    try {
+        const personas = await Persona.findAll({
+            where: {
+                estado: 1,
+            }
+        });
 
-    res.json(personas);
+        res.json(personas);
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 export const getPersona = async (req: Request, res: Response) => {
@@ -27,8 +31,24 @@ export const getPersona = async (req: Request, res: Response) => {
             msg: `No existe información con el id ${id}`
         });
     }
+}
 
+export const getPersonaUsuario = async (req: Request, res: Response) => {
 
+    const { id } = req.params;
+    const persona = await Persona.findOne({
+        where: {
+            idusuario: id
+        }
+    });
+
+    if (persona) {
+        res.json(persona);
+    } else {
+        res.status(404).json({
+            msg: `No existe información con el id ${id}`
+        });
+    }
 }
 
 export const postPersona = async (req: Request, res: Response) => {

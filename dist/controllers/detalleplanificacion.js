@@ -26,14 +26,16 @@ const getDetallePlanificaciones = (req, res) => __awaiter(void 0, void 0, void 0
 exports.getDetallePlanificaciones = getDetallePlanificaciones;
 const getDetalleUsuariosPlanificaciones = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { body } = req;
-        var list3;
+        const { body } = req; /// CODIGO DE USUARIO Y ESTADO
+        var list3 = [];
         const detalleAct = yield listpersonal_1.default.findAll({
             where: {
-                idPersonal: body.referencia,
+                idPersonal: body.referencia, //P-01
             }
         });
+        // TODO LOS REGISTROS DE DETALLE DE ACTIVIDADES QUE ESTA VINCULADO EL USUARIO QUE ESTA LOGEADO EN LA APP
         for (let numero of detalleAct) {
+            // OBJETO DEL DETALLE DE ACTIVIDAD
             console.log(numero.dataValues.idPlanificacion);
             const detallesPlanificacion2 = yield detalleplanificacion_1.default.findAll({
                 where: {
@@ -42,7 +44,10 @@ const getDetalleUsuariosPlanificaciones = (req, res) => __awaiter(void 0, void 0
                 }
             });
             if (detallesPlanificacion2.length != 0) {
-                list3 = [...detallesPlanificacion2];
+                //----> AGREGAR ESTA SOBREESCRIBIENDO
+                for (let numero of detallesPlanificacion2) {
+                    list3.push(numero);
+                }
             }
         }
     }

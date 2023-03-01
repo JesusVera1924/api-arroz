@@ -35,6 +35,7 @@ const tiposinsumos_1 = __importDefault(require("../routes/tiposinsumos"));
 const tiposmaquinarias_1 = __importDefault(require("../routes/tiposmaquinarias"));
 const tiposplagas_1 = __importDefault(require("../routes/tiposplagas"));
 const listerrenos_1 = __importDefault(require("../routes/listerrenos"));
+const proveedores_1 = __importDefault(require("../routes/proveedores"));
 class Server {
     constructor() {
         this.apiPaths = {
@@ -60,6 +61,7 @@ class Server {
             tiposinsumos: '/api/tiposinsumos',
             tiposmaquinarias: '/api/tiposmaquinarias',
             tiposplagas: '/api/tiposplagas',
+            proveedor: '/api/proveedor',
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
@@ -106,7 +108,8 @@ class Server {
             this.app.use(this.apiPaths.tiposgraminea, tiposgraminea_1.default),
             this.app.use(this.apiPaths.tiposinsumos, tiposinsumos_1.default),
             this.app.use(this.apiPaths.tiposmaquinarias, tiposmaquinarias_1.default),
-            this.app.use(this.apiPaths.tiposplagas, tiposplagas_1.default);
+            this.app.use(this.apiPaths.tiposplagas, tiposplagas_1.default),
+            this.app.use(this.apiPaths.proveedor, proveedores_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {

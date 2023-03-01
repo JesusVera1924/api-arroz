@@ -15,6 +15,12 @@ const Maquinarias = db.define('maquinarias', {
     maquinariaTipoId: {
         type: DataTypes.STRING
     },
+    procedencia: {
+        type: DataTypes.STRING
+    },
+    fechacompra: {
+        type: DataTypes.DATE
+    },
     capacidad: {
         type: DataTypes.INTEGER
     },

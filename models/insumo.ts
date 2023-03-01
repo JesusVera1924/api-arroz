@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
 import db from '../db/connection';
+import Proveedor from './proveedor';
 
 const Insumo = db.define('insumos', {
     idinsumos: {
@@ -7,6 +8,9 @@ const Insumo = db.define('insumos', {
         type: DataTypes.STRING
     },
     insumoTipoId: {
+        type: DataTypes.STRING
+    },
+    idProveedor: {
         type: DataTypes.STRING
     },
     nombre: {
@@ -27,5 +31,6 @@ const Insumo = db.define('insumos', {
 
 });
 
+Insumo.belongsTo(Proveedor, { foreignKey: 'idProveedor', targetKey: 'idproveedores' });
 
 export default Insumo;
