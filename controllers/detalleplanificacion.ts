@@ -30,27 +30,21 @@ export const getDetalleUsuariosPlanificaciones = async (req: Request, res: Respo
         });
 
         // TODO LOS REGISTROS DE DETALLE DE ACTIVIDADES QUE ESTA VINCULADO EL USUARIO QUE ESTA LOGEADO EN LA APP
-
-
         for (let numero of detalleAct) {
             // OBJETO DEL DETALLE DE ACTIVIDAD
-            console.log(numero.dataValues.idPlanificacion);
+            //console.log(numero.dataValues.idPlanificacion);
             const detallesPlanificacion2 = await DetallePlanificacion.findAll({
                 where: {
-                    idPlanificacion: numero.dataValues.idPlanificacion,
+                    iddetalleplanificacion: numero.dataValues.idPlanificacion,
                     estado: 1,
                 }
             });
 
-            if (detallesPlanificacion2.length != 0) {
-
-                //----> AGREGAR ESTA SOBREESCRIBIENDO
-                for (let numero of detallesPlanificacion2) {
-                    console.log(numero);
-                    list3.push(numero);
-                }
+            //----> AGREGAR ESTA SOBREESCRIBIENDO
+            for (let numero of detallesPlanificacion2) {
+                list3.push(numero);
+                console.log(list3.length);
             }
-
         }
 
     } catch (error) {
