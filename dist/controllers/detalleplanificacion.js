@@ -46,6 +46,7 @@ const getDetalleUsuariosPlanificaciones = (req, res) => __awaiter(void 0, void 0
             if (detallesPlanificacion2.length != 0) {
                 //----> AGREGAR ESTA SOBREESCRIBIENDO
                 for (let numero of detallesPlanificacion2) {
+                    console.log(numero);
                     list3.push(numero);
                 }
             }

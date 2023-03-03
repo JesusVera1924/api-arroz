@@ -8,6 +8,9 @@ const planificacion = db.define('planificacion', {
         primaryKey: true,
         type: DataTypes.STRING
     },
+    nombre: {
+        type: DataTypes.STRING
+    },
     humedad: {
         type: DataTypes.STRING
     },
@@ -27,6 +30,9 @@ const planificacion = db.define('planificacion', {
         type: DataTypes.STRING
     },
     observacion2: {
+        type: DataTypes.STRING
+    },
+    observacion3: {
         type: DataTypes.STRING
     },
     fechaI: {

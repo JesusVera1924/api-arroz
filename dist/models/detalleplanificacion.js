@@ -22,6 +22,12 @@ const Detalleplanificacion = connection_1.default.define('detalleplanificacion',
     idtipograminea: {
         type: sequelize_1.DataTypes.STRING
     },
+    nivel: {
+        type: sequelize_1.DataTypes.INTEGER
+    },
+    etapa: {
+        type: sequelize_1.DataTypes.INTEGER
+    },
     tipo: {
         type: sequelize_1.DataTypes.STRING
     },

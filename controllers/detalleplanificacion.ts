@@ -43,8 +43,10 @@ export const getDetalleUsuariosPlanificaciones = async (req: Request, res: Respo
             });
 
             if (detallesPlanificacion2.length != 0) {
+
                 //----> AGREGAR ESTA SOBREESCRIBIENDO
                 for (let numero of detallesPlanificacion2) {
+                    console.log(numero);
                     list3.push(numero);
                 }
             }

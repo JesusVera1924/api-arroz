@@ -19,6 +19,12 @@ const Detalleplanificacion = db.define('detalleplanificacion', {
     idtipograminea: {
         type: DataTypes.STRING
     },
+    nivel: {
+        type: DataTypes.INTEGER
+    },
+    etapa: {
+        type: DataTypes.INTEGER
+    },
     tipo: {
         type: DataTypes.STRING
     },

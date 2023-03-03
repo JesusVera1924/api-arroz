@@ -12,6 +12,9 @@ const planificacion = connection_1.default.define('planificacion', {
         primaryKey: true,
         type: sequelize_1.DataTypes.STRING
     },
+    nombre: {
+        type: sequelize_1.DataTypes.STRING
+    },
     humedad: {
         type: sequelize_1.DataTypes.STRING
     },
@@ -31,6 +34,9 @@ const planificacion = connection_1.default.define('planificacion', {
         type: sequelize_1.DataTypes.STRING
     },
     observacion2: {
+        type: sequelize_1.DataTypes.STRING
+    },
+    observacion3: {
         type: sequelize_1.DataTypes.STRING
     },
     fechaI: {
