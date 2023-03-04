@@ -14,6 +14,23 @@ export const getHistorials = async (req: Request, res: Response) => {
     }
 }
 
+export const getHistorialTerreno = async (req: Request, res: Response) => {
+
+    try {
+        const { id } = req.params;
+
+        const historial = await Historial.findAll({
+            where: {
+                referencia: id
+            }
+        });
+
+        res.json(historial);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export const getHistorial = async (req: Request, res: Response) => {
 
     const { id } = req.params;

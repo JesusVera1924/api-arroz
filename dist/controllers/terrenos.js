@@ -39,7 +39,7 @@ const getFincaAndTerrenos = (req, res) => __awaiter(void 0, void 0, void 0, func
 exports.getFincaAndTerrenos = getFincaAndTerrenos;
 const getTerreno = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const terreno = yield terreno_1.default.findByPk(id);
+    const terreno = yield terreno_1.default.findByPk(id, { include: [finca_1.default] });
     if (terreno) {
         res.json(terreno);
     }

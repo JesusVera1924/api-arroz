@@ -35,7 +35,7 @@ export const getTerreno = async (req: Request, res: Response) => {
 
     const { id } = req.params;
 
-    const terreno = await Terreno.findByPk(id);
+    const terreno = await Terreno.findByPk(id, { include: [Finca] });
 
     if (terreno) {
         res.json(terreno);
