@@ -25,6 +25,9 @@ const Insumo = db.define('insumos', {
     unidades: {
         type: DataTypes.STRING
     },
+    cantidad: {
+        type: DataTypes.INTEGER
+    },
     estado: {
         type: DataTypes.INTEGER
     },

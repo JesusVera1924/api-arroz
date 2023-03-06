@@ -29,6 +29,9 @@ const Insumo = connection_1.default.define('insumos', {
     unidades: {
         type: sequelize_1.DataTypes.STRING
     },
+    cantidad: {
+        type: sequelize_1.DataTypes.INTEGER
+    },
     estado: {
         type: sequelize_1.DataTypes.INTEGER
     },
